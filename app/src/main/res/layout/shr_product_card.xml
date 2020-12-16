@@ -33,11 +33,17 @@
                 android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
-                android:id="@+id/product_price"
+                android:id="@+id/product_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/shr_product_description"
                 android:textAppearance="?attr/textAppearanceBody2" />
+
+            <Button
+                android:id="@+id/hack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hack" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

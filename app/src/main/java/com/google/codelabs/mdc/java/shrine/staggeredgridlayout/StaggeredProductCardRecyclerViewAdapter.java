@@ -51,7 +51,7 @@ public class StaggeredProductCardRecyclerViewAdapter extends RecyclerView.Adapte
         if (productList != null && position < productList.size()) {
             ProductEntry product = productList.get(position);
             holder.productTitle.setText(product.title);
-            holder.productPrice.setText(product.price);
+            holder.productDesc.setText(product.desc);
             imageRequester.setImageFromUrl(holder.productImage, product.url);
         }
     }

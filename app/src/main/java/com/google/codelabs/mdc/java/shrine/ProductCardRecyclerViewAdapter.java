@@ -1,5 +1,6 @@
 package com.google.codelabs.mdc.java.shrine;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,22 +20,29 @@ public class ProductCardRecyclerViewAdapter extends RecyclerView.Adapter<Product
 
     private List<ProductEntry> productList;
     private ImageRequester imageRequester;
+    private Context context;
 
-    ProductCardRecyclerViewAdapter(List<ProductEntry> productList) {
+    ProductCardRecyclerViewAdapter(List<ProductEntry> productList, Context c) {
         this.productList = productList;
         imageRequester = ImageRequester.getInstance();
+        this.context = c;
     }
 
     @NonNull
     @Override
     public ProductCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.shr_product_card, parent, false);
-        return new ProductCardViewHolder(layoutView);
+        return new ProductCardViewHolder(layoutView, this.context);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductCardViewHolder holder, int position) {
-        // TODO: Put ViewHolder binding code here in MDC-102
+        if (productList != null && position < productList.size()) {
+            ProductEntry product = productList.get(position);
+            holder.productTitle.setText(product.title);
+            holder.productDesc.setText(product.desc);
+            imageRequester.setImageFromUrl(holder.productImage, product.url);
+        }
     }
 
     @Override
